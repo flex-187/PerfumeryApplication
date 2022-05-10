@@ -19,7 +19,7 @@ public class PerfumeryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PerfumeryApplication.class, args);	
 	}
-	
+	// HUJ
 	  @Bean
 	  public CommandLineRunner dataLoader(ProducerRepository repo, ProductRepository repoProduct, ProducerService producerService, ProductService productService) {
 	    return new CommandLineRunner() {
