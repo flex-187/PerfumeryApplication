@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product Form</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class = "header" th:insert = "fragments/header :: header"></div>
+
+	
+	
+
+	<form method = "POST" th:action="@{/products/new}" th:object="${product}">
+	
+	<div class = "formError" th:insert = "fragments/formError :: formError"></div>
+	
+
+	<input type="hidden" th:field="*{id}" th:value="${product.id}">
+	
+	<label for = "type">Type: </label>
+	<select th:field="*{type}">
+  	<option th:each="type : ${T(ok.perfumery.entity.Product.Type).values()}" 
+ 		          th:value="${type}"
+          th:text="${type.displayValue}">Type</option>
+</select>
+	<br /><br />
+	<label for="productName">Name: </label>
+	<input type="text" th:field="*{name}"/> <br />
+	
+	<br />
+	<label for="productProducer">Producer: </label>
+	<select name="producers" id="producers" th:field="*{producer}">
+	<option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}" >Producer</option> 	
+	</select> <br />
+	
+	<br />
+	<label for="batchCode">Batch code: </label>
+	<input type="text" th:field="*{batchCode}"/> <br />
+	
+	<br />
+	<label for="currentVolume">Current volume: </label>
+	<input type="text" th:field="*{currentVolume}"/> <br />
+	
+	<br />
+	<label for="maxVolume">Max volume: </label>
+	<input type="text" th:field="*{maxVolume}"/> <br />
+	
+
+	
+	<br />
+	<input type="submit" value="Submit Product"/>
+	</form>
+
+</body>
+</html>

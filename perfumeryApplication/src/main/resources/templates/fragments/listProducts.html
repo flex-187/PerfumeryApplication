@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div th:fragment="listProducts(products)">
+	<div>
+		<ul>
+		<li th:each="product : ${products}">
+					<a
+					th:text="${product.name} + ' - ' + ${product.currentVolume} + ' / ' + ${product.maxVolume} + ' - ' + ${product.type.displayValue}" th:href="@{/products/{id}(id=${product.id})}">product name</a></li>
+		</ul>
+	
+	
+	
+	</div>
+
+
+</div>
+
+</body>
+</html>

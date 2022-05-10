@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Baza Danych</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+
+
+		<div class = "header" th:insert = "fragments/header :: header"></div>
+	
+		<div th:each="producer : ${producers}">
+			<h1><a th:href="@{/producers/{id}(id=${producer.id})}" th:text="${producer.name}"> producer name</a></h1>
+			<br />
+			<div th:insert="fragments/listProducts.html :: listProducts(${producer.products})"></div>
+
+
+		</div>
+
+
+</body>
+</html>

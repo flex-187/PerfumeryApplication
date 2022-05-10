@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product Form</title>
+<link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:insert="fragments/header :: header"></div>
+
+
+
+
+	<form method="POST" th:action="@{/producers/new}"
+		th:object="${producer}">
+
+	<div class="formError" th:insert="fragments/formError :: formError"></div>
+
+
+		<input type="hidden" th:field="*{id}" th:value="${producer.id}">
+
+		<label for="producerName">Name: </label> <input type="text"
+			th:field="*{name}" /> <br /> <label for="productName">Country
+			of origin: </label> <input type="text" th:field="*{countryOrigin}" /> <br />
+
+
+		<input type="submit" value="Submit Producer" />
+	</form>
+
+
+	<div
+		th:insert="fragments/listProducts.html :: listProducts(${producer.products})"></div>
+
+</body>
+</html>

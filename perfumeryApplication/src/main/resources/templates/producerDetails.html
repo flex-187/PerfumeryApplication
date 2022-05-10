@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/styles.css}" rel="stylesheet" />
+<title th:text="${producer.name} + ' - kari'">Product Name</title>
+</head>
+<body>
+	<div class="header" th:insert="fragments/header :: header"></div>
+
+	<a th:href="@{/producers/{id}/edit(id=${producer.id})}">[edit]</a>
+
+	<h1 th:text="${producer.name}">Producer</h1>
+	<h3 th:text="${producer.countryOrigin}">Country of Origin</h3>
+
+	<h1>Products:</h1>
+	<div
+		th:insert="fragments/listProducts.html :: listProducts(${producer.products})"></div>
+
+</body>
+</html>

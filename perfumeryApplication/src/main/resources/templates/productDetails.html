@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${product.name} + ' - kari'">Product Name</title>
+<link th:href="@{/styles.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:insert="fragments/header :: header"></div>
+
+	<a th:href="@{/products/{id}/edit(id=${product.id})}">[edit]</a>
+
+	<h1 th:text="${product.producer.name}">Producer</h1>
+	<h3 th:text="${product.producer.countryOrigin}">Producer</h3>
+
+	<h1 th:text="${product.name}">Name</h1>
+	<h1
+		th:text="'volume: ' + ${product.currentVolume} + ' / ' + ${product.maxVolume}">currentVolume</h1>
+
+
+	<h2 th:text="'Batch: ' + ${product.batchCode}">Batch Code</h2>
+
+</body>
+</html>

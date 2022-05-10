@@ -1,0 +1,29 @@
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(128, 128, 128);
+  }
+  
+  .header li {
+    float: left;
+  }
+  
+  .header li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .header a {
+      font-family:fantasy;
+      font-style: normal;
+      font-weight:100;
+  }
+  
+  .header li a:hover {
+    background-color: rgb(150,150,150); 
+  }
