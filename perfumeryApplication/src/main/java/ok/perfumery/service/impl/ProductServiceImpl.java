@@ -3,6 +3,8 @@ package ok.perfumery.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -31,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 	public void createNewProduct(String name, int producerid, String batchCode, int maxVolume, int currentVolume, Type type) {
 		Product newProduct = new Product();
 		newProduct.setName(name);
-		newProduct.setProducer(producerService.getProducerById(producerid));
+		newProduct.setProducer(producerService.findById(producerid));
 		newProduct.setBatchCode(batchCode);
 		newProduct.setMaxVolume(maxVolume);
 		newProduct.setCurrentVolume(currentVolume);
@@ -41,45 +43,45 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void updateProduct(Product product) {
+	public void update(Product product) {
 		productRepo.save(product);
 		
 	}
 
 	@Override
-	public void deleteProductById(int id) {
+	public void deleteById(int id) {
 		productRepo.deleteById(id);
 		
 	}
 
 	@Override
-	public void deleteProduct(Product product) {
+	public void delete(Product product) {
 		productRepo.delete(product);
 		
 	}
 
 	@Override
-	public Product getProductById(int id) {
+	public Product findById(int id) {
 		return productRepo.findById(id)
 				.orElseThrow(ProductNotFoundException::new);
 	}
 
 	@Override
-	public List<Product> getAllProducts() {
+	public List<Product> findAll() {
 		Iterable<Product> allProducts = productRepo.findAll();
 		List<Product> result = Lists.newArrayList(allProducts);
 		return result;
 	}
 
 	@Override
-	public List<Product> getProductByProducerId(int id) {
-		Producer producer = producerService.getProducerById(id);
+	public List<Product> findByProducerId(int id) {
+		Producer producer = producerService.findById(id);
 		return producer.getProducts();
 	}
 
 
 	@Override
-	public Product getProductByName(String name) {
+	public Product findByName(String name) {
 		return productRepo.findByName(name).get(0);
 	}
 
@@ -88,6 +90,12 @@ public class ProductServiceImpl implements ProductService {
 	public void createNewProduct(Product product) {
 		productRepo.save(product);
 		
+	}
+
+
+	@Override
+	public Page<Product> findAll(Pageable page) {
+		return productRepo.findAll(page);
 	}
 
 

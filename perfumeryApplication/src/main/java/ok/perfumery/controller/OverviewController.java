@@ -26,12 +26,12 @@ public class OverviewController {
 	
 	@ModelAttribute(name = "product")
 	public List<Product> products() {
-		return productService.getAllProducts();
+		return productService.findAll();
 	}
 	
 	@GetMapping
 	public String displayOverview(Model model) {
-		model.addAttribute("producers",producerService.getAllProducers());
+		model.addAttribute("producers",producerService.findAll());
 		return  "overview";
 	}
 

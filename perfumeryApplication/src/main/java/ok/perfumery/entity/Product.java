@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Data
@@ -55,6 +57,7 @@ public class Product {
 	@Size(min=3, message="Name has to be at least 3 characters long")
 	private String name;
 	
+	@JsonBackReference
 	@NotNull(message = "Producer can't be null")
 	@ManyToOne
 	private Producer producer;

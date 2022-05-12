@@ -7,14 +7,14 @@ import ok.perfumery.entity.Producer;
 public interface ProducerService {
 
 	void createNewProducer(String name, String countryOrigin);
-	void updateProducer(Producer producer);
-	Producer getProducerById(int id);
-	Producer getProducerByName(String name);
-	void deleteProducerById(int id);
+	void update(Producer producer);
+	Producer findById(int id);
+	Producer findByName(String name);
+	void deleteById(int id);
 	
-	List<Producer> getAllProducers();
+	List<Producer> findAll();
 	
-	boolean producerExistsByName(String name);
+	boolean existsByName(String name);
 	void createNewProducer(Producer producer);
 	
 	

@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +33,7 @@ public class Producer {
 	
 	private String countryOrigin;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "producer")
 	private List<Product> products = new ArrayList<>();
 	

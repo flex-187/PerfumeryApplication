@@ -29,8 +29,8 @@ public class PerfumeryApplication {
 	    	  repo.save(new Producer("Acqua Di Parma","Italy"));
 	    	  repo.save(new Producer("Caron","France"));
 
-	    	  Producer prod = producerService.getProducerByName("Acqua Di Parma");
-	    	  Producer prod2 = producerService.getProducerByName("Caron");
+	    	  Producer prod = producerService.findByName("Acqua Di Parma");
+	    	  Producer prod2 = producerService.findByName("Caron");
 
 	    	  Product product1 = new Product();
 	    	  product1.setName("Colonia Essenza");
@@ -52,7 +52,7 @@ public class PerfumeryApplication {
 	    	  repoProduct.save(product1);
 	    	  repoProduct.save(product2);
 	    	  
-	    	  Product peja = productService.getProductByName("Pour Un Homme");
+	    	  Product peja = productService.findByName("Pour Un Homme");
 	    	  System.out.println(peja);
 	        
 	        

@@ -34,28 +34,28 @@ public class ProductController {
 	
 	@GetMapping("/")
 	public String displayOverview(Model model) {
-		model.addAttribute("producers",producerService.getAllProducers());
+		model.addAttribute("producers",producerService.findAll());
 		return  "overview";
 	}
 	
 	@GetMapping("/{id}")
 	public String showProductDetails(@PathVariable int id, Model model) {
-		Product product = productService.getProductById(id);
+		Product product = productService.findById(id);
 		model.addAttribute(product);		
 		return "productDetails";
 	}
 	
 	@GetMapping("/{id}/edit")
 	public String showFormForEditProduct(@PathVariable int id,	Model model) {
-		model.addAttribute("product", productService.getProductById(id));
-		model.addAttribute("producers", producerService.getAllProducers());
+		model.addAttribute("product", productService.findById(id));
+		model.addAttribute("producers", producerService.findAll());
 		return "productForm";
 	}
 	
 	@GetMapping("/new") 
 	public String showProductForm(Model model){
 		model.addAttribute("product", new Product());
-		model.addAttribute("producers", producerService.getAllProducers());
+		model.addAttribute("producers", producerService.findAll());
 		return "productForm";
 	}
 	
@@ -63,12 +63,12 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute("product") @Valid Product product, Errors errors, Model model) {
 		
 		if (errors.hasErrors()) {
-			model.addAttribute("producers", producerService.getAllProducers());
+			model.addAttribute("producers", producerService.findAll());
 			return "productForm";
 		}
 		
 		if(product.getId() != 0) {
-			productService.updateProduct(product);
+			productService.update(product);
 		} else {
 			productService.createNewProduct(product);
 		}

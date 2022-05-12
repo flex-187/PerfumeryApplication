@@ -22,7 +22,7 @@ public class ProducerServiceImpl implements ProducerService {
 	
 	@Override
 	public void createNewProducer(String name, String countryOrigin) {
-		if(producerExistsByName(name)) throw new IllegalArgumentException("Producer already exists");
+		if(existsByName(name)) throw new IllegalArgumentException("Producer already exists");
 		
 		Producer newProducer = new Producer();
 		newProducer.setName(name);
@@ -31,36 +31,36 @@ public class ProducerServiceImpl implements ProducerService {
 	}
 
 	@Override
-	public void updateProducer(Producer producer) {
+	public void update(Producer producer) {
 		producerRepo.save(producer);
 		
 	}
 
 	@Override
-	public Producer getProducerById(int id) {
+	public Producer findById(int id) {
 		return producerRepo.findById(id).orElseThrow(ProducerNotFoundException::new);
 	}
 
 	@Override
-	public void deleteProducerById(int id) {
+	public void deleteById(int id) {
 		producerRepo.deleteById(id);
 		
 	}
 
 	@Override
-	public List<Producer> getAllProducers() {
+	public List<Producer> findAll() {
 		Iterable<Producer> allProducers = producerRepo.findAll();
 		List<Producer> result = Lists.newArrayList(allProducers);
 		return result;
 	}
 
 	@Override
-	public boolean producerExistsByName(String name) {
+	public boolean existsByName(String name) {
 		return !producerRepo.findByName(name).isEmpty();
 	}
 
 	@Override
-	public Producer getProducerByName(String name) {
+	public Producer findByName(String name) {
 		return producerRepo.findByName(name).get(0);
 	}
 

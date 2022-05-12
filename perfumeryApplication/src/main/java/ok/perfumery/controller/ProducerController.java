@@ -26,13 +26,13 @@ public class ProducerController {
 
 	@GetMapping("")
 	public String showProducersOverview(Model model) {
-		model.addAttribute("producers",producerService.getAllProducers());
+		model.addAttribute("producers",producerService.findAll());
 		return "overview";
 	}
 	
 	@GetMapping("/{id}")
 	public String showProducerDetails(@PathVariable int id, Model model) {
-		model.addAttribute("producer",producerService.getProducerById(id));
+		model.addAttribute("producer",producerService.findById(id));
 		return "producerDetails";
 	}
 
@@ -50,7 +50,7 @@ public class ProducerController {
 		}
 		
 		if (producer.getId() != 0) {
-			producerService.updateProducer(producer);
+			producerService.update(producer);
 		} else {
 			producerService.createNewProducer(producer);
 		}
@@ -60,7 +60,7 @@ public class ProducerController {
 	
 	@GetMapping("/{id}/edit")
 	public String showFormForEditProduct(@PathVariable int id, Model model) {
-		model.addAttribute("producer", producerService.getProducerById(id));
+		model.addAttribute("producer", producerService.findById(id));
 		return "producerForm";
 	}
 
