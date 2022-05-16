@@ -12,6 +12,7 @@
 
 
 		<div class = "header" th:insert = "fragments/header :: header"></div>
+		<h1>Products:</h1>
 	
 		<div th:each="producer : ${producers}">
 			<h1><a th:href="@{/producers/{id}(id=${producer.id})}" th:text="${producer.name}"> producer name</a></h1>
